@@ -1,0 +1,1 @@
+Test of commit, adding files to repository
