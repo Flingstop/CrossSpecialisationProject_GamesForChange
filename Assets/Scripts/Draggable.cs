@@ -8,7 +8,16 @@ public class Draggable : MonoBehaviour
     Vector3 mouseOffset;
     Rigidbody physics;
 
+    [Header("Position")]
     [SerializeField] float zPlane;
+
+    [Header("Rotation")]
+    Quaternion startRotation;
+    [SerializeField] bool lockRotationWhenDragging;
+    [SerializeField] Vector3 defaultRotation;
+    [SerializeField] float slerpTime;
+
+    float timeOfPickup;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +39,8 @@ public class Draggable : MonoBehaviour
     private void OnMouseDown()
     {
         mouseOffset = Input.mousePosition - GetScreenPosition();
+        timeOfPickup = Time.time;
+        startRotation = transform.rotation;
     }
 
     private void OnMouseDrag()
@@ -40,5 +51,24 @@ public class Draggable : MonoBehaviour
         float adjustedY = (cameraPosition.y - rawPosition.y) * (zPlane - rawPosition.z) / (cameraPosition.z - rawPosition.z) + rawPosition.y;
         transform.position = new Vector3(adjustedX, adjustedY, zPlane);
         physics.velocity = new Vector3(0, 0, 0);
+        if (lockRotationWhenDragging)
+        {
+            if (slerpTime <= 0)
+            {
+                transform.rotation = Quaternion.Euler(defaultRotation);
+            }
+            else
+            {
+                float slerpX = Mathf.Clamp((Time.time - timeOfPickup) / slerpTime, 0, 1);
+                float slerpY = 1 - Mathf.Pow(slerpX - 1, 4);
+                transform.rotation = Quaternion.Slerp(startRotation, Quaternion.Euler(defaultRotation), slerpY);
+            }
+        }
+        physics.constraints = RigidbodyConstraints.FreezeRotation;
+    }
+
+    private void OnMouseUp()
+    {
+        physics.constraints = RigidbodyConstraints.None;
     }
 }
