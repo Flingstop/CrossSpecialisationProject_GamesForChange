@@ -12,7 +12,10 @@ public class Cuttable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Remesh the fresh
+        DestroyImmediate(GetComponent<MeshCollider>());
+        MeshCollider newCollider = gameObject.AddComponent<MeshCollider>();
+        newCollider.convex = true;
     }
 
     // Update is called once per frame
