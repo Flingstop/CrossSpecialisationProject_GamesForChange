@@ -24,8 +24,11 @@ public class Cutter : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Cuttable>() != null && cutting == null)
         {
-            Debug.Log("Hit" + other.gameObject);
+            Debug.Log("Hit " + other.gameObject);
+            
             cutting = other.gameObject;
+            cutting.GetComponent<Cuttable>().LockX(transform);
+
             enterHeight = transform.position.y;
         }
     }
@@ -36,8 +39,9 @@ public class Cutter : MonoBehaviour
         {
             if (transform.position.y < enterHeight)
             {
-                Debug.Log("Cut" + other.gameObject);
+                Debug.Log("Cut " + cutting);
             }
+            cutting.GetComponent<Cuttable>().FreeX();
             cutting = null;
         }
     }
