@@ -10,6 +10,8 @@ public class Draggable : MonoBehaviour
 
     [Header("Position")]
     [SerializeField] float zPlane;
+    [SerializeField] bool limitMinimumY;
+    [SerializeField] float minimumY;
 
     [Header("Rotation")]
     Quaternion startRotation;
@@ -49,8 +51,13 @@ public class Draggable : MonoBehaviour
         Vector3 cameraPosition = Camera.main.transform.position;
         float adjustedX = (cameraPosition.x - rawPosition.x) * (zPlane - rawPosition.z) / (cameraPosition.z - rawPosition.z) + rawPosition.x;
         float adjustedY = (cameraPosition.y - rawPosition.y) * (zPlane - rawPosition.z) / (cameraPosition.z - rawPosition.z) + rawPosition.y;
+        if (limitMinimumY && adjustedY < minimumY)
+        {
+            adjustedY = minimumY;
+        }
         transform.position = new Vector3(adjustedX, adjustedY, zPlane);
         physics.velocity = new Vector3(0, 0, 0);
+
         if (lockRotationWhenDragging)
         {
             if (slerpTime <= 0)
