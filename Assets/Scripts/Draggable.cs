@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
+    public bool dragging;
 
     Vector3 mouseOffset;
     Rigidbody physics;
@@ -43,6 +44,7 @@ public class Draggable : MonoBehaviour
         mouseOffset = Input.mousePosition - GetScreenPosition();
         timeOfPickup = Time.time;
         startRotation = transform.rotation;
+        dragging = true;
     }
 
     private void OnMouseDrag()
@@ -77,5 +79,6 @@ public class Draggable : MonoBehaviour
     private void OnMouseUp()
     {
         physics.constraints = RigidbodyConstraints.None;
+        dragging = false;
     }
 }

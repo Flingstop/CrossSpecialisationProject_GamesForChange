@@ -7,15 +7,22 @@ public class Cuttable : MonoBehaviour
     float xDifference;
     Transform reference;
     Quaternion lockedRotation;
-    bool locked;
+    bool locked = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Remesh the fresh
-        DestroyImmediate(GetComponent<MeshCollider>());
-        MeshCollider newCollider = gameObject.AddComponent<MeshCollider>();
-        newCollider.convex = true;
+        
+    }
+
+    public void Remesh()
+    {
+        //Destroy(GetComponent<MeshCollider>());
+        //gameObject.AddComponent<MeshCollider>();
+        GetComponent<MeshCollider>().sharedMesh = null;
+        GetComponent<MeshCollider>().sharedMesh = GetComponent<MeshFilter>().mesh;
+
+        Debug.Log("Remeshed");
     }
 
     // Update is called once per frame

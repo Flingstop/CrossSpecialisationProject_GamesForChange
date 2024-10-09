@@ -7,6 +7,8 @@ public class Cutter : MonoBehaviour
 {
 
     MeshSlicer slicer = new MeshSlicer();
+    Draggable drag;
+    Collider parentCollider;
 
     GameObject cutting;
     float enterHeight;
@@ -20,6 +22,8 @@ public class Cutter : MonoBehaviour
     void Start()
     {
         
+        drag = GetComponentInParent<Draggable>();
+        parentCollider = GetComponentInParent<Collider>();
     }
 
     // Update is called once per frame
@@ -30,10 +34,8 @@ public class Cutter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<Cuttable>() != null && cutting == null)
+        if (other.gameObject.GetComponent<Cuttable>() != null && cutting == null && drag.dragging)
         {
-            Debug.Log("Hit " + other.gameObject);
-            
             cutting = other.gameObject;
             cutting.GetComponent<Cuttable>().LockX(transform);
 
@@ -45,19 +47,24 @@ public class Cutter : MonoBehaviour
     {
         if (other.gameObject == cutting)
         {
+            
             if (transform.position.y < enterHeight)
             {
                 Debug.Log("Cut " + cutting);
                 (GameObject, GameObject) pieces = Cut();
-                pieces.Item1.GetComponent<Cuttable>().FreeX();
-                pieces.Item2.GetComponent<Cuttable>().FreeX();
+                
+                pieces.Item1.GetComponent<Cuttable>().Remesh();
+                pieces.Item2.GetComponent<Cuttable>().Remesh();
+
                 Destroy(cutting);
             }
             else 
             {
                 cutting.GetComponent<Cuttable>().FreeX();
+
             }
-            
+
+
             cutting = null;
         }
     }
