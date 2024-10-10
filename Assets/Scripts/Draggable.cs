@@ -14,6 +14,9 @@ public class Draggable : MonoBehaviour
     [SerializeField] bool limitMinimumY;
     [SerializeField] float minimumY;
 
+    bool lockedX;
+    float lockedXPosition;
+
     [Header("Rotation")]
     Quaternion startRotation;
     [SerializeField] bool lockRotationWhenDragging;
@@ -28,10 +31,17 @@ public class Draggable : MonoBehaviour
         physics = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LockX(bool locked)
     {
-        
+        lockedX = locked;
+        if (locked)
+        {
+            lockedXPosition = transform.position.x;
+        }
+        else
+        {
+            mouseOffset = Input.mousePosition - GetScreenPosition();
+        }
     }
 
     Vector3 GetScreenPosition()
@@ -56,6 +66,10 @@ public class Draggable : MonoBehaviour
         if (limitMinimumY && adjustedY < minimumY)
         {
             adjustedY = minimumY;
+        }
+        if (lockedX)
+        {
+            adjustedX = lockedXPosition; 
         }
         transform.position = new Vector3(adjustedX, adjustedY, zPlane);
         physics.velocity = new Vector3(0, 0, 0);

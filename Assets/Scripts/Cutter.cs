@@ -37,7 +37,8 @@ public class Cutter : MonoBehaviour
         if (other.gameObject.GetComponent<Cuttable>() != null && cutting == null && drag.dragging)
         {
             cutting = other.gameObject;
-            cutting.GetComponent<Cuttable>().LockX(transform);
+            drag.LockX(true);
+            cutting.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
 
             enterHeight = transform.position.y;
         }
@@ -53,17 +54,26 @@ public class Cutter : MonoBehaviour
                 Debug.Log("Cut " + cutting);
                 (GameObject, GameObject) pieces = Cut();
                 
-                pieces.Item1.GetComponent<Cuttable>().Remesh();
-                pieces.Item2.GetComponent<Cuttable>().Remesh();
+                if (pieces.Item1 && pieces.Item2)
+                {
+                    pieces.Item1.GetComponent<Cuttable>().Initialize();
+                    pieces.Item2.GetComponent<Cuttable>().Initialize();
 
-                Destroy(cutting);
+                    Destroy(cutting);
+                }
+                else
+                {
+                    cutting.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                }
+
+                drag.LockX(false);
+
             }
             else 
             {
-                cutting.GetComponent<Cuttable>().FreeX();
-
+                drag.LockX(false);
+                cutting.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             }
-
 
             cutting = null;
         }
