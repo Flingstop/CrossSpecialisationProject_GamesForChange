@@ -1,1 +1,1 @@
-httpsassetstore.unity.compackagestoolsutilitiesmesh-slicer-free-283149
+Mesh slicing tool: httpsassetstore.unity.compackagestoolsutilitiesmesh-slicer-free-283149 (Standard Unity EULA)
