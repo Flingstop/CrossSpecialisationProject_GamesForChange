@@ -961,7 +961,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.84705883, g: 0.8901961, b: 0.99215686, a: 1}
   m_Intensity: 2
   m_Range: 5
   m_SpotAngle: 30
@@ -1021,7 +1021,7 @@ Transform:
   m_GameObject: {fileID: 368695356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.14, y: 3.8, z: 1.39}
+  m_LocalPosition: {x: 1.81, y: 4.04, z: 1.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1702,7 +1702,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}
+  m_Color: {r: 0.8457191, g: 0.88684916, b: 0.990566, a: 1}
   m_Intensity: 2
   m_Range: 5.9
   m_SpotAngle: 30
@@ -1737,7 +1737,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1762,7 +1762,7 @@ Transform:
   m_GameObject: {fileID: 803259232}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.37, y: 3.68, z: 1.55}
+  m_LocalPosition: {x: -3.57, y: 3.69, z: 1.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2124,9 +2124,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.6615062, b: 0, a: 1}
-  m_Intensity: 9
-  m_Range: 1.96
-  m_SpotAngle: 73
+  m_Intensity: 2.01
+  m_Range: 8
+  m_SpotAngle: 72.17302
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -2158,7 +2158,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2183,7 +2183,7 @@ Transform:
   m_GameObject: {fileID: 1143461247}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.599, y: 2.957, z: 4.024}
+  m_LocalPosition: {x: 0.909, y: 4.311, z: 5.038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2361,8 +2361,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9716981, g: 0.83648545, b: 0.6004361, a: 1}
-  m_Intensity: 0.89
+  m_Color: {r: 0.9716981, g: 0.73493534, b: 0.47209862, a: 1}
+  m_Intensity: 3.09
   m_Range: 1.58
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2396,7 +2396,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2421,7 +2421,7 @@ Transform:
   m_GameObject: {fileID: 1524008859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.89, y: 2.262, z: 3.76}
+  m_LocalPosition: {x: 0.991, y: 2.45, z: 4.105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3036,6 +3036,7 @@ GameObject:
   - component: {fileID: 2013244119}
   - component: {fileID: 2013244118}
   - component: {fileID: 2013244121}
+  - component: {fileID: 2013244122}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3177,6 +3178,29 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &2013244122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013244117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433faa8b758afed4f9295b193c697276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PixelationFactor: 0.6
+  _ColorEmulationMode: 3
+  _FullscreenColorDepth: {x: 256, y: 256, z: 256}
+  _FullscreenDitherDepth: {x: 32, y: 32, z: 32}
+  _DitheringMatrixSize: 2
+  _DitheringScale: 1
+  _InterlacingSize: 1
+  _PostProcessShader: {fileID: 4800000, guid: 56d52fd5b7c6911468179e5a7359ce0e, type: 3}
+  _PostProcessShaderAccurate: {fileID: 4800000, guid: 2ebed186567d3c244a87538744a62920, type: 3}
+  _PixelationShader: {fileID: 4800000, guid: f2da0e2a14a532548b5db043244b3df1, type: 3}
+  _InterlacingShader: {fileID: 4800000, guid: 03ebd34214b41ef459d7ee6753b062be, type: 3}
 --- !u!1 &2040286796
 GameObject:
   m_ObjectHideFlags: 0
